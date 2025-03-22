@@ -6,6 +6,16 @@ using namespace std;
 
 SinglyLinkedList::SinglyLinkedList() : head(nullptr) , size(0) {}
 
+SinglyLinkedList::~SinglyLinkedList() {
+	Node* p = head; 
+	while (p != nullptr) {
+		Node* next = p->next;
+		delete p; 
+		p = next; 
+	}
+	head = nullptr; 
+}
+
 bool SinglyLinkedList::Isempty() const {
 	return (head == NULL);
 }
@@ -227,13 +237,16 @@ void SinglyLinkedList::concatenating2linkedlist(SinglyLinkedList* l2) {
 	if (head == NULL) {
 		head = temp;
 		temp = NULL;
+		this->size += l2->size;
 		return;
 	}
 	while (p->next != NULL) {
 		p = p->next;
 	}
 	p->next = temp;
-	delete temp;
+	this->size+=l2->size; 
+	l2->head = nullptr;
+	l2->size = 0;
 }
 
 void SinglyLinkedList::Merging2linkedlist(SinglyLinkedList* l2) {
@@ -282,3 +295,17 @@ void SinglyLinkedList::Merging2linkedlist(SinglyLinkedList* l2) {
 	l2->head = NULL;
 }
 
+
+int SinglyLinkedList::MidleLinkedList() {
+	if (Isempty()) {
+		return -1; 
+	}
+	Node* p, *q; 
+	p = q = head; 
+	while (q != NULL) {
+		q = q->next; 
+		if (q != NULL) q = q->next; 
+		if (q != NULL) p = p->next; 
+	}
+	return p->data; 
+}

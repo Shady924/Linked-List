@@ -1,0 +1,27 @@
+# Build artifacts
+build/
+*.so
+*.a
+*.dylib
+*.exe
+
+# IDE
+.vscode/
+.idea/
+
+# Compilation
+*.o
+*.out
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+Makefile
+
+# Logs and databases
+*.log
+*.sqlite
+
+# OS generated
+.DS_Store
+Thumbs.db

@@ -1,12 +1,14 @@
 #pragma once
+
 #include "Node.h"
 
-class SinglyLinkedList {
+class CircularDoublyLinkedList {
 private:
     Node* head;
-    int size; 
+    int size;
 public:
-    SinglyLinkedList();
+    CircularDoublyLinkedList();
+    ~CircularDoublyLinkedList();
     bool Isempty() const;
     void InsertFirst(int newvalue);
     void Insert(int index, int newvalue);
@@ -21,8 +23,7 @@ public:
     bool issorted() const;
     void Removeduplicatesfromsorted();
     void Reverse();
-    void concatenating2linkedlist(SinglyLinkedList* l2);
-    void Merging2linkedlist(SinglyLinkedList* l2);
+    void concatenating2linkedlist(CircularDoublyLinkedList* l2);
+    int MidleLinkedList();
+
 };
-
-

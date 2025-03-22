@@ -1,77 +1,42 @@
-# Linked List Data Structures in C++
-
+# LinkedList Data Structures in C++
 
 # 📌 Overview
+- This project implements various linked list data structures in C++ using object-oriented programming (OOP) principles. It includes Singly Linked List, Doubly Linked List, Circular Linked List, and Circular Doubly Linked List.
 
-- This project implements a Singly Linked List in C++ with various operations such as insertion, deletion, and more. It is designed with object-oriented programming (OOP) principles.
+## 🚀 Features
+- Insertion at head, tail, and arbitrary positions
+- Deletion by index/value
+- Reverse operations
+- Sorting checks
+- Duplicate removal (sorted lists)
+- Concatenation
+- Statistical operations (sum, min, max)
+- Memory-safe implementations with destructors
 
-# ✨ Features
-
-- Insert elements at the beginning, middle, or end
-
-- Delete elements by index
-
-- Display the list
-
-- Find the maximum and minimum values
-
-- Check if the list is sorted
-
-- Remove duplicates from a sorted list
-
-- Reverse the list 
-
-- Concatenate two linked lists
-
-- **Object-Oriented Design**: Each data structure is encapsulated in a class.  
-- **Error Handling**: Edge cases (e.g., empty lists, invalid indices) are handled.  
-- **Tested with Assertions**: Includes test cases for validation. 
-
-# 🚀 Usage
-
-Example usage of the linked list:
-
-```cpp
-#include "SinglyLinkedList.h"
-#include "CirculerLinkedList.h"
-#include <iostream>
-using namespace std;
-
-int main() {
-    SinglyLinkedList S_list;
-    S_list.InsertFirst(10);
-    S_list.Append(20);
-    S_list.Insert(1, 15);
-    S_list.Display(); // Output: 10 15 20
-    
-    cout << "Max: " << S_list.Max() << endl; // Output: 20
-    cout << "Min: " << S_list.Min() << endl; // Output: 10
-    
-    S_list.Reverse();
-    S_list.Display(); // Output: 20 15 10
-    
-
-    CircularLinkedList C_list;
-    C_list.Append(10);
-    C_list.Append(20);
-    C_list.InsertFirst(5);
-    C_list.Display(); // Output: 5 10 20
-    
-    C_list.Delete(2);
-    C_list.Display(); // Output: 5 20
-    
-    cout << "Length: " << C_list.Length() << endl;
-    cout << "Max: " << C_list.Max() << endl;
-    cout << "Min: " << C_list.Min() << endl;
-
-    return 0;
-}
-```
+## 📋 Requirements
+- CMake  3.10+
+- C++17 compatible compiler
 
 # 🏗 Future Improvements
+- Add unit tests using Google Test (GTest).
+- Standardize error messages and output across all linked list implementations, add detailed comments to clarify the logic, and optimize code for better performance.
+- Refactor the `Delete` functions across all linked list implementations to use 0-based indexing instead of 1-based indexing for consistency.
 
-Implement doubly linked list.
+## 🛠️ Installation
+1. Clone the repository:
+  - git clone https://github.com/Shady924/Linked-List.git
+2. Build the project using CMake:
+  - cmake -S . -B build
+  - cmake --build build
+3. Run the executable:
+  * On Windows:
+    - cd build\Debug
+    - LinkedList.exe
+  * On Linux/macOS:
+    - cd build
+    - ./LinkedList
 
-Add unit tests using Google Test (GTest).
+## 🐛 Reporting Issues
+If you encounter a bug or spot an area where the code could be improved, i’d love to hear from you!
 
 # ⭐ If you like this project, don't forget to star it on GitHub!

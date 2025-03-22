@@ -2,17 +2,19 @@
 
 #include "Node.h"
 
-class CircularLinkedList {
+
+class SinglyLinkedList {
 private:
     Node* head;
     int size; 
 public:
-    CircularLinkedList();
+    SinglyLinkedList();
+    ~SinglyLinkedList();
     bool Isempty() const;
     void InsertFirst(int newvalue);
     void Insert(int index, int newvalue);
     void Append(int newvalue);
-     int Delete(int index);
+    int Delete(int index);
     void Display() const;
     int Length() const;
     int Sum() const;
@@ -22,6 +24,9 @@ public:
     bool issorted() const;
     void Removeduplicatesfromsorted();
     void Reverse();
-    void concatenating2linkedlist(CircularLinkedList* l2);
-
+    void concatenating2linkedlist(SinglyLinkedList* l2);
+    int MidleLinkedList();
+    void Merging2linkedlist(SinglyLinkedList* l2);
 };
+
+

@@ -4,6 +4,22 @@ using namespace std;
 
 CircularLinkedList::CircularLinkedList() : head(nullptr) , size(0) {}
 
+CircularLinkedList::~CircularLinkedList() {
+	if (head == nullptr) return; 
+	Node* tail = head; 
+	while (tail->next != head) {
+		tail = tail->next;
+	}
+	tail->next = nullptr;
+	Node* p = head; 
+	while (p != nullptr){
+		Node* next = p->next; 
+		delete p; 
+		p = next; 
+	}
+	head = nullptr; 
+}
+
 bool CircularLinkedList::Isempty() const {
 	return (head == NULL);
 }
@@ -54,7 +70,7 @@ void CircularLinkedList::Insert(int index, int newvalue) {
 		}
 	}
 	else {
-		cout << "valid index\n";
+		cout << "Invalid index\n";
 	}
 }
 
@@ -77,41 +93,45 @@ void CircularLinkedList::Append(int newvalue) {
 
 	int CircularLinkedList::Delete(int index) {
 		int x = -1;
-		if (index > 0 && index <= this->size) {
-			this->size--; 
-			Node* p = head;
-			Node* q = NULL;
-			if (index == 1) {
+		
+		if (Isempty() || head == nullptr) {
+			return x;
+		}
+		
+		if (index < 1 || index > this->size) {
+			return x;
+		} 
+
+		Node* p = head;
+		Node* q = nullptr;
+		if (index == 1) {
+			x = head->data;
+			if (this->size == 1) {
+				delete head;
+				head = nullptr;
+			}
+			else {
 				while (p->next != head) {
 					p = p->next;
 				}
-				x = head->data;
-				if (p == head) {
-					delete head;
-					head = NULL;
-				}
-				else {
-					p->next = head->next;
-					delete head;
-					head = p->next;
-				}
+				p->next = head->next;
+				delete head;
+				head = p->next;
 			}
-			else {
-				for (int i = 0; i < index - 2; i++) {
-					p = p->next;
-				}
-				q = p->next;
-				x = q->data;
-				p->next = q->next;
-				delete q;
-			}
-
-			return x;
 		}
 		else {
-			return x;
+			for (int i = 1; i < index - 1; i++) {
+				p = p->next;
+			}
+			q = p->next;
+			x = q->data;
+			p->next = q->next;
+			delete q;
 		}
-	}
+		this->size--;
+		return x; 
+
+}
 
 
 void CircularLinkedList::Display() const {
@@ -233,10 +253,16 @@ void CircularLinkedList::Reverse() {
 void CircularLinkedList::concatenating2linkedlist(CircularLinkedList* l2) {
 	Node* p = head;
 	Node* q = l2->head;
-	if (head == NULL) {
-		head = q; 
-		return; 
+	if (l2->head == NULL) {
+		return;
 	}
+	if (head == NULL) {
+		head = q;
+		this->size = l2->size;
+		l2->size = 0;
+		l2->head = nullptr;
+		return; 
+	}	
 	if (head->next == head) {
 		head->next = q; 
 		while (q->next != l2->head)
@@ -244,9 +270,9 @@ void CircularLinkedList::concatenating2linkedlist(CircularLinkedList* l2) {
 			q = q->next;
 		}
 		q->next = head;
-		return;
-	}
-	if (l2->head == NULL) {
+		this->size += l2->size;
+		l2->size = 0;
+		l2->head = nullptr;
 		return;
 	}
 	if (l2->head->next == l2->head) {
@@ -256,6 +282,9 @@ void CircularLinkedList::concatenating2linkedlist(CircularLinkedList* l2) {
 		}
 		p->next = q;
 		q->next = head;
+		this->size += l2->size;
+		l2->size = 0;
+		l2->head = nullptr;
 		return;
 	}
 	while (p->next != head)
@@ -268,5 +297,22 @@ void CircularLinkedList::concatenating2linkedlist(CircularLinkedList* l2) {
 		q = q->next;
 	}
 	q->next = head;
+	this->size += l2->size;
+	l2->size = 0;
+	l2->head = nullptr;
+}
 
+
+int CircularLinkedList::MidleLinkedList() {
+	if (Isempty()) {
+		return -1;
+	}
+	Node* p, * q;
+	p = q = head;
+	do{
+		q = q->next;
+		if (q != head) q = q->next;
+		if (q != head) p = p->next;
+	} while (q != head);
+	return p->data;
 }
